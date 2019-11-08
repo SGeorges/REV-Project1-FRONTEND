@@ -1,0 +1,26 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <mdb-card class="border border-light w-100">
+            <!--Card content-->
+            <mdb-card-body>
+
+                <!--Title-->
+                <mdb-card-title class="border-bottom border-light">
+                    <h1 class="h3 border-bottom border-dark text-center">{{ firstName | uppercase}}
+                        {{ lastName | uppercase}}</h1>
+                </mdb-card-title>
+
+                <!--Text-->
+                <mdb-card-text>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">USER ID: {{ userID }}</li>
+                        <li class="list-group-item">USER EMAIL: {{ email }}</li>
+                        <li class="list-group-item">USER ROLE: {{ role }}</li>
+                    </ul>
+                </mdb-card-text>
+
+            </mdb-card-body>
+        </mdb-card>
+
+    </div>
+</div>

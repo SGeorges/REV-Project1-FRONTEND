@@ -1,0 +1,46 @@
+<div class="container">
+    <h1 class="h4 text-center"> EXPENSES </h1>
+    <div class="row">
+        <table mdbTable #tableEl="mdbTable" small="true" stickyHeader="true" hover="true" class="z-depth-1">
+            <thead class="sticky-top">
+                <tr>
+                    <th *ngFor="let head of headElements; let i = index" 
+                        scope="col"
+                        class= "text-center">
+                        {{head | titlecase}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody #row>
+                <tr mdbTableCol *ngFor="let ticket of ticketArray">
+                    <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
+                    <td class="text-center red-text">{{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}}</td>
+                    <td class="text-center"> {{ticket.reimb_type}} </td>
+                    <!-- If Admin privlidges then see the first/last name of person who submitted ticket -->
+                    <td *ngIf="admin"> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}:
+                        {{ticket.reimb_submitted | date:'short'}} </td>
+                    <td *ngIf="!admin"> {{ticket.reimb_submitted | date:'short'}} </td>
+                    <!-- If Admin privlideges && user_ID doesn't match then get the opportunity to change ticket status -->
+                    <td *ngIf="((admin && ticket.reimb_status_id == 1) && (userId != ticket.reimb_author_id)); else elseBlock">
+                        <div class="btn-group" mdbDropdown>
+                            <button mdbDropdownToggle mdbBtn color="dark" size="sm"
+                                class="dropdown-toggle waves-light" type="button" mdbWavesEffect>
+                                {{ticket.reimb_status}}
+                            </button>
+                            <div class="dropdown-menu dropdown-primary">
+                                <p class="dropdown-item m-0 text-center" (click)="approved(ticket.reimb_id)">APPROVED</p>
+                                <div class="dropdown-divider"></div>
+                                <p class="dropdown-item m-0 text-center" (click)="denied(ticket.reimb_id)">DENIED</p>
+                            </div>
+                        </div>
+                    </td>
+                    <ng-template #elseBlock>
+                        <td> {{ticket.reimb_status}} </td>
+                    </ng-template>
+                    <!-- ADDING SECOND COMPONENET ONCLICK -->
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

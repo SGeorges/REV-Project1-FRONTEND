@@ -1,0 +1,34 @@
+<!-- Default form contact -->
+<form class="text-center border border-light p-5" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+    <p class="h4 mb-4">Expense Ticket</p>
+
+    <!-- Amount -->
+    <input type="number" formControlName="contactFormAmount" id="defaultContactFormName" mdbInput class="form-control mb-4"
+        placeholder="Amount">
+
+    <!-- Type -->
+    <label>Expense Type</label>
+    <select formControlName="contactFormType" class="browser-default custom-select mb-4">
+        <option value="" >Choose option</option>
+        <option value="1">LODGING</option>
+        <option value="2">TRAVEL</option>
+        <option value="3">FOOD</option>
+        <option value="4">OTHER</option>
+    </select>
+
+    <!-- Description -->
+    <div class="form-group">
+        <textarea formControlName="contactFormDescription" class="form-control rounded-0" mdbInput
+            id="exampleFormControlTextarea2" rows="3" placeholder="Description"></textarea>
+    </div>
+
+    <!-- Send button -->
+    <button mdbBtn color="info" outline="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect
+        type="submit">Send</button>
+
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+
+</form>
+<!-- Default form contact -->

@@ -1,0 +1,57 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <div class="col col-md-2">
+            <!-- Empty div for spacing-->
+        </div>
+
+        <div class="col col-md-8">
+            <mdb-card class="border border-light">
+                <!--Card content-->
+                <mdb-card-body>
+
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h4 class="font-weight-bold text-center">LOGIN</h4>
+                    </mdb-card-title>
+
+                    <!--Text-->
+                    <mdb-card-text>
+                        <form [formGroup]="validationForm">
+                            <div class="md-form">
+                                <mdb-icon fas icon="user-circle"></mdb-icon>
+                                <input mdbInput mdbValidate type="text" id="form1" class="form-control"
+                                    formControlName="usernameInput">
+                                <label for="form1">Type your username</label>
+                                <mdb-error *ngIf="input.invalid && (input.dirty || input.touched)">Input invalid
+                                </mdb-error>
+                                <mdb-success *ngIf="input.valid && (input.dirty || input.touched)">Input valid
+                                </mdb-success>
+                            </div>
+                            <div class="md-form">
+                                <mdb-icon fas icon="lock"></mdb-icon>
+                                <input mdbInput mdbValidate formControlName="passwordInput" minLength="10"
+                                    maxLength="25" type="password" class="form-control" id="form10">
+                                <label for="form10">Type your password</label>
+                                <mdb-error
+                                    *ngIf="passwordFormEx.invalid && (passwordFormEx.dirty || passwordFormEx.touched)">
+                                    Input invalid</mdb-error>
+                                <mdb-success
+                                    *ngIf="passwordFormEx.valid && (passwordFormEx.dirty || passwordFormEx.touched)">
+                                    Input valid</mdb-success>
+                            </div>
+                        </form>
+                    </mdb-card-text>
+
+                    <div class="row justify-content-md-center">
+                        <button type="button" mdbBtn color="dark" class="relative waves-light" (click)="authenticate()"
+                            mdbWavesEffect>Login</button>
+                    </div>
+
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+        <div class="col col-md-2">
+            <!-- Empty div for spacing -->
+        </div>
+    </div>
+</div>
