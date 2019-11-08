@@ -21,6 +21,7 @@ import { TicketTableComponent } from './components/ticket-table/ticket-table.com
 import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
 import { HistoryComponent } from './Pages/history/history.component';
 import { ManagementComponent } from './pages/management/management.component';
+import { FormComponent } from './pages/form/form.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ManagementComponent } from './pages/management/management.component';
     TicketTableComponent,
     TicketFormComponent,
     HistoryComponent,
-    ManagementComponent
+    ManagementComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
