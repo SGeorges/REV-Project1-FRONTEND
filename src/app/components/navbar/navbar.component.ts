@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { Subscription } from 'rxjs';
 
-import { CurrentUser } from '../../user';
+import { Router } from '@angular/router';
+import { CurrentUser } from 'src/app/user';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +10,29 @@ import { CurrentUser } from '../../user';
 })
 export class NavbarComponent implements OnInit {
 
-  name = `${CurrentUser.user_first_name} ${CurrentUser.user_last_name}`;
-  userSubscription: Subscription;
+  admin : boolean = CurrentUser.user_role_id == 1;
 
-  constructor(private userService: UserService) { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
+  
+  route(value) {
 
+    switch(value) {
+      case 0 :
+        this.router.navigateByUrl('/profile')
+        break;
+      case 1 : 
+        this.router.navigateByUrl('/history')
+        break;
+      case 2 : 
+        this.router.navigateByUrl('/login')
+        break;
+      case 3 : 
+        this.router.navigateByUrl('/management')
+        break;
+    }
+    console.log(value);
+  }
 }

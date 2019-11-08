@@ -5,6 +5,7 @@ import { LoginComponent } from 'src/app/Pages/login/login.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
 import { HistoryComponent } from './Pages/history/history.component';
+import { ManagementComponent } from './pages/management/management.component';
 
 export const routes: Routes = [{
     path: 'login',
@@ -25,6 +26,9 @@ export const routes: Routes = [{
 }, {
     path: 'history',
     component: HistoryComponent
+}, {
+    path: 'management',
+    component: ManagementComponent
 }];
 
 @NgModule({

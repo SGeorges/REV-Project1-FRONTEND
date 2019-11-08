@@ -9,20 +9,20 @@
       
           <!-- Links -->
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <p class="nav-link waves-light" mdbWavesEffect (click)="route()" value= 0><mdb-icon fas icon="home"></mdb-icon> Home
-            </li>
             <li class="nav-item">
-              <p class="nav-link waves-light" mdbWavesEffect (click)="route()" value= 1><mdb-icon fas icon="hourglass"></mdb-icon> History
+              <p class="nav-link waves-light" mdbWavesEffect (click)="route(1)"><mdb-icon fas icon="hourglass"></mdb-icon> History
             </li>
-      
+            <li *ngIf="admin"
+              class="nav-item">
+              <p class="nav-link waves-light" mdbWavesEffect (click)="route(3)"><mdb-icon fas icon="clipboard-list"></mdb-icon> Manage
+            </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown" dropdown>
               <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                 <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown-menu-left dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="route(0)">My account</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="route(2)">Log out</a>
               </div>
             </li>
       
