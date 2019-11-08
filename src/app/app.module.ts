@@ -6,6 +6,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { LoginService } from './services/login.service';
 import { UserService } from './../app/services/user.service';
+import { FormService } from './services/form.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +47,7 @@ import { FormComponent } from './pages/form/form.component';
     MDBBootstrap,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [LoginService, UserService],
+  providers: [LoginService, UserService, FormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

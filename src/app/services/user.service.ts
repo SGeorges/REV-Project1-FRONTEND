@@ -35,7 +35,6 @@ export class UserService {
       this.ticketSubject.next(data)
       console.log(this.$ticketData);
       });
-
   }
 
   postApprove(ticketId: number) {

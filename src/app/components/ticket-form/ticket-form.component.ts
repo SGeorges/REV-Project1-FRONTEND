@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 //import { ConnectionService } from './connection.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CurrentUser } from '../../user';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-ticket-form',
@@ -24,7 +25,7 @@ export class TicketFormComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formService: FormService) {
     this.contactForm = fb.group({
       'contactFormAmount': ['', Validators.required],
       'contactFormType': ['', Validators.required],
@@ -35,7 +36,6 @@ export class TicketFormComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-   
     const formValues = {
       userID: CurrentUser.ers_users_id,
       password: CurrentUser.ers_password,
@@ -44,8 +44,7 @@ export class TicketFormComponent implements OnInit {
       description: this.contactForm.controls['contactFormDescription'].value
     }
 
-    console.log(formValues);
-
+    this.formService.postForm(formValues, this.fileToUpload);
   }
 
   handleFileInput(files: FileList) {
