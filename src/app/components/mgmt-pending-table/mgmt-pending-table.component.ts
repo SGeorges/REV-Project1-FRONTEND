@@ -26,7 +26,10 @@ export class MgmtPendingTableComponent implements OnInit {
     private mgmtService : MgmtService) { }
 
   ngOnInit() {
-    this.pendingArray = this.mgmtService.pendingArray
+    this.ticketSubscription = this.mgmtService.pendingArray
+      .subscribe(data => {
+        this.pendingArray = data;
+      });
   }
 
   selectTicket(ticketId: number) {

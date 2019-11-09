@@ -18,14 +18,18 @@ export class MgmtApprovedTableComponent implements OnInit {
   public selectedId: number;
 
   approvedArray: TicketData[] = [];
+  ticketSubscription: Subscription;
+
 
   constructor(
     private mgmtService: MgmtService,
     private userService: UserService) { }
 
   ngOnInit() {
-    console.log("mgmt-approved onInit()");
-    this.approvedArray = this.mgmtService.approvedArray;
+    this.ticketSubscription = this.mgmtService.approvedArray
+      .subscribe(data => {
+        this.approvedArray = data;
+      });
   }
 
   selectTicket(ticketId: number) {

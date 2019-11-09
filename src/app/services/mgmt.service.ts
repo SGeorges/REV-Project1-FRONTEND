@@ -14,16 +14,23 @@ import { UserService } from './user.service';
 export class MgmtService {
   public headElements = ['Id', 'Employee', 'Date Submitted', 'Type', 'Amount'];
 
+  private pendingSubject: Subject<TicketData[]> = new Subject();
+  public pendingArray: Observable<TicketData[]>
+        = this.pendingSubject.asObservable();
 
-  public pendingArray: TicketData[] = [];
-  public approvedArray: TicketData[] = [];
-  public deniedArray: TicketData[] = [];
+  private approvedSubject: Subject<TicketData[]> = new Subject();
+  public approvedArray: Observable<TicketData[]>
+        = this.approvedSubject.asObservable();
+        
+  private deniedSubject: Subject<TicketData[]> = new Subject();
+  public deniedArray: Observable<TicketData[]>
+        = this.deniedSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient,
     private userService: UserService) {}
 
-    ticketSubscription: Subscription;
+  ticketSubscription: Subscription;
 
   async getTickets() {
     const credentials = {
@@ -34,9 +41,9 @@ export class MgmtService {
     await this.userService.getExpenses(credentials);
 
     console.log("mgmt-service getTickets()");
-    this.pendingArray.length = 0;
-    this.approvedArray.length = 0;
-    this.deniedArray.length = 0;
+    let newPendingArray: TicketData[] = [];
+    let newApprovedArray: TicketData[] = [];
+    let newDeniedArray: TicketData[] = [];
 
     if(this.ticketSubscription) {
       this.ticketSubscription.unsubscribe();
@@ -47,20 +54,20 @@ export class MgmtService {
       for (let i = 0; i < data.length; i++) {
         switch (data[i].reimb_status) {
           case 'PENDING' :
-            this.pendingArray.push(data[i]);
+            newPendingArray.push(data[i]);
             break;
           case 'APPROVED' :
-              this.approvedArray.push(data[i]);
+            newApprovedArray.push(data[i]);
             break;
           case 'DENIED' :
-            this.deniedArray.push(data[i]);
+            newDeniedArray.push(data[i]);
             break;
         }
       }
-      console.log([this.pendingArray, this.approvedArray, this.deniedArray]);
-      this.pendingArray = [...this.pendingArray];
-      this.approvedArray = [...this.approvedArray];
-      this.deniedArray = [...this.deniedArray];
+      console.log([newPendingArray, newApprovedArray, newDeniedArray]);
+      this.pendingSubject.next(newPendingArray);
+      this.approvedSubject.next(newApprovedArray);
+      this.deniedSubject.next(newDeniedArray);
     });
   }
     

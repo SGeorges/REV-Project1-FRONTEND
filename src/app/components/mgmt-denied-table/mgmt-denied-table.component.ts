@@ -25,7 +25,10 @@ export class MgmtDeniedTableComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    this.deniedArray = this.mgmtService.deniedArray;
+    this.ticketSubscription = this.mgmtService.deniedArray
+      .subscribe(data => {
+        this.deniedArray = data;
+      });
   }
 
   selectTicket(ticketId: number) {
