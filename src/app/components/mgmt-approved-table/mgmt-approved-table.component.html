@@ -1,0 +1,62 @@
+<div class="container p-4">
+        <h1 class="h4 text-center"> Approved Expenses </h1>
+        <div class="row">
+            <table mdbTable #tableEl="mdbTable" small="true" stickyHeader="true" hover="true" class="z-depth-1">
+                <thead class="sticky-top">
+                    <tr>
+                        <th *ngFor="let head of headElements; let i = index" scope="col" class="text-center">
+                            {{head | titlecase}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody mdbTableCol *ngFor="let ticket of approvedArray" (click)='selectTicket(ticket.reimb_id)'>
+                    <tr>
+                        <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
+                        <td class="text-center"> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}} </td>
+                        <td class="text-center"> {{ticket.reimb_submitted | date:'short'}} </td>
+                        <td class="text-center"> {{ticket.reimb_type}} </td>
+                        <td class="text-center red-text"> {{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}} </td>
+                    </tr>
+                    <tr *ngIf="selectedId == ticket.reimb_id">
+                        <td colspan="100%">
+                            <mdb-card class="border border-light w-100">
+                                <!--Card content-->
+                                <mdb-card-body>
+                                    <!--Text-->
+                                    <mdb-card-text>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        <strong><u>Author Id:</u></strong> {{ticket.reimb_author_id}}
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <strong><u>Author Name:</u></strong> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <strong><u>Resolver Id:</u></strong> {{ticket.reimb_resolver_id}}
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <strong><u>Resolver Name:</u></strong> {{ticket.reimb_resolver_first_name}} {{ticket.reimb_resolver_last_name}}
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <strong><u>Resolved Date:</u></strong> {{ticket.reimb_resolved | date:'short'}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <img src="https://via.placeholder.com/250">
+                                            </div>
+                                        </div>
+    
+                                    </mdb-card-text>
+    
+                                </mdb-card-body>
+                            </mdb-card>
+                        </td>
+    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -22,7 +22,7 @@ export class TicketTableComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.ticketSubscription = this.userService.$ticketData
+    this.ticketSubscription = this.userService.ticketData
       .subscribe(data => {
         for (let i = 0; i < data.length; i++) {
           if (data[i].reimb_author_id == this.userId) {

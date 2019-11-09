@@ -16,13 +16,15 @@ import { LoginComponent } from './Pages/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
 import { TicketDetailComponent } from './components/ticket-detail/ticket-detail.component';
 import { TicketTableComponent } from './components/ticket-table/ticket-table.component';
 import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
 import { HistoryComponent } from './Pages/history/history.component';
 import { ManagementComponent } from './pages/management/management.component';
 import { FormComponent } from './pages/form/form.component';
+import { MgmtPendingTableComponent } from './components/mgmt-pending-table/mgmt-pending-table.component';
+import { MgmtApprovedTableComponent } from './components/mgmt-approved-table/mgmt-approved-table.component';
+import { MgmtDeniedTableComponent } from './components/mgmt-denied-table/mgmt-denied-table.component';
 
 
 @NgModule({
@@ -32,13 +34,15 @@ import { FormComponent } from './pages/form/form.component';
     NavbarComponent,
     UserCardComponent,
     ProfileComponent,
-    ExpenseTableComponent,
     TicketDetailComponent,
     TicketTableComponent,
     TicketFormComponent,
     HistoryComponent,
     ManagementComponent,
-    FormComponent
+    FormComponent,
+    MgmtPendingTableComponent,
+    MgmtApprovedTableComponent,
+    MgmtDeniedTableComponent
   ],
   imports: [
     BrowserModule,

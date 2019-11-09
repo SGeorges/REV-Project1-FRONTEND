@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { CurrentUser } from 'src/app/user';
 
 @Component({
   selector: 'app-management',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService : UserService) { }
 
   ngOnInit() {
+    const credentials = {
+      username: CurrentUser.ers_username,
+      password: CurrentUser.ers_password
+    }
+    
+    this.userService.getExpenses(credentials);
   }
 
 }

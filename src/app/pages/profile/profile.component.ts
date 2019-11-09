@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
       username: CurrentUser.ers_username,
       password: CurrentUser.ers_password
     }
-    
     this.userService.getExpenses(credentials);
   }
 

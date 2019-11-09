@@ -17,7 +17,7 @@ import { TicketRequest } from '../models/ticketRequest';
 export class UserService {
 
   private ticketSubject: Subject<TicketData[]> = new Subject();
-  public $ticketData: Observable<TicketData[]>
+  public ticketData: Observable<TicketData[]>
         = this.ticketSubject.asObservable();
         
   constructor(
@@ -33,7 +33,7 @@ export class UserService {
     .subscribe((data: TicketData[]) => {
       console.log(data);
       this.ticketSubject.next(data)
-      console.log(this.$ticketData);
+      console.log(this.ticketData);
       });
   }
 
