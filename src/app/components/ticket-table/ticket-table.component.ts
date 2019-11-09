@@ -39,22 +39,4 @@ export class TicketTableComponent implements OnInit {
       this.selectedId = ticketId;
     }
   }
-
-  approved(ticketId: number) {
-    console.log(ticketId);
-    for( let i = 0; i < this.ticketArray.length; i++) {
-      if (this.ticketArray[i].reimb_id == ticketId) {
-        this.ticketArray[i].reimb_status = "APPROVED";
-      }
-    }
-    //CurrentUser.ers_password = this.validationForm.controls['passwordInput'].value;
-
-    //this.loginService.loginHttp(credentials);
-  }
-
-  denied(ticketId: number) {
-    console.log(ticketId);
-
-  }
-
 }

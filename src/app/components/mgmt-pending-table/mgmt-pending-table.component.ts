@@ -3,6 +3,7 @@ import { CurrentUser } from '../../user';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { TicketData } from '../../models/ticketData';
+import { MgmtService } from 'src/app/services/mgmt.service';
 
 @Component({
   selector: 'app-mgmt-pending-table',
@@ -11,27 +12,21 @@ import { TicketData } from '../../models/ticketData';
 })
 export class MgmtPendingTableComponent implements OnInit {
 
-  public headElements = ['Id', 'Employee', 'Date Submitted', 'Type', 'Amount']
-  public userId = CurrentUser.ers_users_id;
+  public headElements: string[] = this.mgmtService.headElements;
+  public userId: number = CurrentUser.ers_users_id;
 
   public selectedId: number;
 
-  pendingArray: TicketData[] = [];
+  pendingArray: TicketData[];
   ticketSubscription: Subscription;
 
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private mgmtService : MgmtService) { }
 
   ngOnInit() {
-    console.log("mgmt-pending happening");
-    this.ticketSubscription = this.userService.ticketData
-      .subscribe(data => {
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].reimb_status == 'PENDING') {
-            this.pendingArray.push(data[i]);
-          }
-        }
-      })
+    this.pendingArray = this.mgmtService.pendingArray
   }
 
   selectTicket(ticketId: number) {
@@ -42,4 +37,13 @@ export class MgmtPendingTableComponent implements OnInit {
     }
   }
 
+  approved(ticketId: number) {
+    console.log(ticketId);
+    this.mgmtService.postApprove(ticketId);
+  }
+
+  denied(ticketId: number) {
+    console.log(ticketId);
+    this.mgmtService.postDenied(ticketId);
+  }
 }

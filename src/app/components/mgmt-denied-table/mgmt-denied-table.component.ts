@@ -3,6 +3,7 @@ import { CurrentUser } from 'src/app/user';
 import { TicketData } from 'src/app/models/ticketData';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { MgmtService } from 'src/app/services/mgmt.service';
 
 @Component({
   selector: 'app-mgmt-denied-table',
@@ -11,26 +12,20 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MgmtDeniedTableComponent implements OnInit {
 
-  public headElements = ['Id', 'Employee', 'Date Submitted', 'Type', 'Amount']
-  public userId = CurrentUser.ers_users_id;
+  public headElements: string[] = this.mgmtService.headElements;
+  public userId: number = CurrentUser.ers_users_id;
 
   public selectedId: number;
 
   deniedArray: TicketData[] = [];
   ticketSubscription: Subscription;
   
-  constructor(private userService: UserService) { }
+  constructor(
+    private mgmtService: MgmtService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    console.log("mgmt-denied happening");
-    this.ticketSubscription = this.userService.ticketData
-      .subscribe(data => {
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].reimb_status == 'DENIED') {
-            this.deniedArray.push(data[i]);
-          }
-        }
-      })
+    this.deniedArray = this.mgmtService.deniedArray;
   }
 
   selectTicket(ticketId: number) {

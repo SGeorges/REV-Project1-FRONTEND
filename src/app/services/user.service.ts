@@ -36,16 +36,4 @@ export class UserService {
       console.log(this.ticketData);
       });
   }
-
-  postApprove(ticketId: number) {
-    const ticketRequest : TicketRequest = {
-      userID: CurrentUser.ers_users_id,
-      password: CurrentUser.ers_password,
-      ticketID: ticketId
-    }
-    const url = 'http://localhost:8080/meadges/ApproveTicket/';
-
- //   this.httpClient.post(url, ticketRequest)
- //     .subscribe((data:))
-  }
 }

@@ -27,25 +27,32 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">
+                                                <li class="list-group-item pl-0">
                                                     <strong><u>Author Id:</u></strong> {{ticket.reimb_author_id}}
                                                 </li>
-                                                <li class="list-group-item">
+                                                <li class="list-group-item pl-0">
                                                     <strong><u>Author Name:</u></strong> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}
                                                 </li>
-                                                <li class="list-group-item">
+                                                <li class="list-group-item pl-0">
                                                     <strong><u>Resolver Id:</u></strong> {{ticket.reimb_resolver_id}}
                                                 </li>
-                                                <li class="list-group-item">
+                                                <li class="list-group-item pl-0">
                                                     <strong><u>Resolver Name:</u></strong> {{ticket.reimb_resolver_first_name}} {{ticket.reimb_resolver_last_name}}
                                                 </li>
-                                                <li class="list-group-item">
+                                                <li class="list-group-item pl-0">
                                                     <strong><u>Resolved Date:</u></strong> {{ticket.reimb_resolved | date:'short'}}
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 text-center">
                                             <img src="https://via.placeholder.com/250">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 border-top border-color-dark">
+                                        <div class="col-md-12">
+                                            <strong><u>Description:</u></strong>
+                                            <br>
+                                            {{ticket.reimb_description}}
                                         </div>
                                     </div>
 

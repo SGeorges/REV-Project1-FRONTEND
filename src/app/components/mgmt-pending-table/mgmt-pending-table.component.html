@@ -9,11 +9,11 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody mdbTableCol *ngFor="let ticket of pendingArray" (click)='selectTicket(ticket.reimb_id)'>
+                <tbody mdbTableCol *ngFor="let ticket of (pendingArray)" (click)='selectTicket(ticket.reimb_id)'>
                     <tr>
                         <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
                         <td class="text-center"> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}} </td>
-                        <td class="text-center"> {{ticket.reimb_submitted | date:'short'}} </td>
+                        <td class="text-center"> {{ticket.reimb_submitted | date:'longDate'}} </td>
                         <td class="text-center"> {{ticket.reimb_type}} </td>
                         <td class="text-center red-text"> {{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}} </td>
                     </tr>
@@ -27,26 +27,42 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">
+                                                    <li class="list-group-item pl-0">
                                                         <strong><u>Author Id:</u></strong> {{ticket.reimb_author_id}}
                                                     </li>
-                                                    <li class="list-group-item">
+                                                    <li class="list-group-item pl-0">
                                                         <strong><u>Author Name:</u></strong> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}
                                                     </li>
-                                                    <li class="list-group-item">
+                                                    <li class="list-group-item pl-0">
                                                         <strong><u>Resolver Id:</u></strong> {{ticket.reimb_resolver_id}}
                                                     </li>
-                                                    <li class="list-group-item">
+                                                    <li class="list-group-item pl-0">
                                                         <strong><u>Resolver Name:</u></strong> {{ticket.reimb_resolver_first_name}} {{ticket.reimb_resolver_last_name}}
                                                     </li>
-                                                    <li class="list-group-item">
-                                                        <strong><u>Resolved Date:</u></strong> {{ticket.reimb_resolved | date:'short'}}
+                                                    <li class="list-group-item pl-0">
+                                                        <strong><u>Resolved Date:</u></strong> {{ticket.reimb_resolved | date:'longDate'}}
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="col-sm-6 text-center">
                                                 <img src="https://via.placeholder.com/250">
                                             </div>
+                                        </div>
+                                        <div class="row mt-4 border-top border-bottom border-color-dark">
+                                            <div class="col-sm-12">
+                                                <strong><u>Description:</u></strong>
+                                                <br>
+                                                {{ticket.reimb_description}}
+                                            </div>
+                                        </div>
+                                        <div *ngIf= "ticket.reimb_author_id != userId"class= "row mt-4">
+                                            <div class="col-sm-6">
+                                                <button mdbBtn type="button" color="success" outline="true" mdbWavesEffect (click)='approved(ticket.reimb_id)'>Approved</button>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button mdbBtn type="button" color="danger" outline="true" mdbWavesEffect (click)='denied(ticket.reimb_id)'>Denied</button>
+                                            </div>
+
                                         </div>
     
                                     </mdb-card-text>
