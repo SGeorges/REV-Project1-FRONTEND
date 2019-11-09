@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from 'src/app/Pages/login/login.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { HistoryComponent } from './Pages/history/history.component';
 import { ManagementComponent } from './pages/management/management.component';
 import { FormComponent } from './pages/form/form.component';
 
@@ -23,9 +22,6 @@ export const routes: Routes = [{
 }, {
     path:'form',
     component: FormComponent
-}, {
-    path: 'history',
-    component: HistoryComponent
 }, {
     path: 'management',
     component: ManagementComponent

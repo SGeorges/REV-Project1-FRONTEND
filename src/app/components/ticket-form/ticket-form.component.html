@@ -1,34 +1,41 @@
-<!-- Default form contact -->
-<form class="text-center border border-light m-5 p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-
-    <p class="h4 mb-4">Expense Ticket</p>
-
-    <!-- Amount -->
-    <input type="number" formControlName="contactFormAmount" id="defaultContactFormName" mdbInput class="form-control mb-4"
-        placeholder="Amount">
-
-    <!-- Type -->
-    <select formControlName="contactFormType" class="browser-default custom-select mb-4">
-        <option value="" >Expense Type</option>
-        <option value="1">Lodging</option>
-        <option value="2">Travel</option>
-        <option value="3">Food</option>
-        <option value="4">Other</option>
-    </select>
-
-    <!-- Description -->
-    <div class="form-group">
-        <textarea formControlName="contactFormDescription" class="form-control rounded-0" mdbInput
-            id="exampleFormControlTextarea2" rows="3" placeholder="Description"></textarea>
+<div class="row">
+    <div class="col-md-3">
+        <!-- Empty Div for spacing and/or ads-->
     </div>
+    <div class="col-md-6">
+        <!-- Default form contact -->
+        <form class="text-center border border-light m-5 p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-    <label for="file">Choose File</label>
-    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+            <p class="h4 mb-4">Expense Ticket</p>
 
-    <!-- Submit button -->
-    <div class="row justify-content-md-center">
-        <button mdbBtn color="info" outline="true" block="true" class=" w-100 m-4 waves-effect" mdbWavesEffect
-        type="submit">Send</button>
+            <!-- Amount -->
+            <input type="number" formControlName="contactFormAmount" id="defaultContactFormName" mdbInput
+                class="form-control mb-4" placeholder="Amount">
+
+            <!-- Type -->
+            <select formControlName="contactFormType" class="browser-default custom-select mb-4">
+                <option value="">Expense Type</option>
+                <option value="1">Lodging</option>
+                <option value="2">Travel</option>
+                <option value="3">Food</option>
+                <option value="4">Other</option>
+            </select>
+
+            <!-- Description -->
+            <div class="form-group">
+                <textarea formControlName="contactFormDescription" class="form-control rounded-0" mdbInput
+                    id="exampleFormControlTextarea2" rows="3" placeholder="Description"></textarea>
+            </div>
+
+            <label for="file">Choose File</label>
+            <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+
+            <!-- Submit button -->
+            <div class="row justify-content-md-center">
+                <button mdbBtn color="info" outline="true" block="true" class=" w-100 m-4 waves-effect" mdbWavesEffect
+                    type="submit">Send</button>
+            </div>
+        </form>
+        <!-- Default form contact -->
     </div>
-</form>
-<!-- Default form contact -->
+</div>

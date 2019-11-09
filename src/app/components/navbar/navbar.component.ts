@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl('/profile')
         break;
       case 1 : 
-        this.router.navigateByUrl('/history')
+        this.router.navigateByUrl('/form')
         break;
       case 2 : 
         this.router.navigateByUrl('/login')

@@ -27,7 +27,7 @@ export class TicketFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private formService: FormService) {
     this.contactForm = fb.group({
-      'contactFormAmount': ['', Validators.required],
+      'contactFormAmount': [null, Validators.required],
       'contactFormType': ['', Validators.required],
       'contactFormDescription': ['', Validators.required]
     });
@@ -44,7 +44,14 @@ export class TicketFormComponent implements OnInit {
       description: this.contactForm.controls['contactFormDescription'].value
     }
 
-    this.formService.postForm(formValues, this.fileToUpload);
+    if ((formValues.amount != null) && (formValues.type != "") ) {
+      console.log(formValues);
+
+      //this.formService.postForm(formValues, this.fileToUpload);
+    } else {
+
+    }
+
   }
 
   handleFileInput(files: FileList) {
