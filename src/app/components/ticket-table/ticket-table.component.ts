@@ -11,9 +11,10 @@ import { CurrentUser } from '../../user';
 })
 export class TicketTableComponent implements OnInit {
 
-  public headElements = ['ID', 'AMOUNT', 'TYPE', 'SUBMITTED', 'STATUS'];
-  public admin = CurrentUser.user_role_id == 1;
+  public headElements = ['Id', 'Amount', 'Type', 'Date Submitted', 'Status'];
   public userId = CurrentUser.ers_users_id;
+
+  public selectedId : number;
 
   ticketArray: TicketData[] = [];
   ticketSubscription: Subscription;
@@ -24,10 +25,20 @@ export class TicketTableComponent implements OnInit {
     this.ticketSubscription = this.userService.$ticketData
       .subscribe(data => {
         for (let i = 0; i < data.length; i++) {
-          this.ticketArray.push(data[i]);
+          if (data[i].reimb_author_id == this.userId) {
+            this.ticketArray.push(data[i]);
+          }
         }
       }
   )};
+
+  selectTicket(ticketId: number) {
+    if (this.selectedId == ticketId) {
+      this.selectedId = 0;
+    } else {
+      this.selectedId = ticketId;
+    }
+  }
 
   approved(ticketId: number) {
     console.log(ticketId);

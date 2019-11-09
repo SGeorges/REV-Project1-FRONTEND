@@ -16,7 +16,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { ExpensetableComponent } from './components/expensetable/expensetable.component';
+import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
 import { TicketDetailComponent } from './components/ticket-detail/ticket-detail.component';
 import { TicketTableComponent } from './components/ticket-table/ticket-table.component';
 import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
@@ -32,7 +32,7 @@ import { FormComponent } from './pages/form/form.component';
     NavbarComponent,
     UserCardComponent,
     ProfileComponent,
-    ExpensetableComponent,
+    ExpenseTableComponent,
     TicketDetailComponent,
     TicketTableComponent,
     TicketFormComponent,
