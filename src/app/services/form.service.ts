@@ -30,7 +30,9 @@ export class FormService {
         console.log(receiptCreateUrl);
         console.log(fileToUpload)
         this.httpClient.post(receiptCreateUrl, fileToUpload)
-          .subscribe((data) => console.log(data));
+          .subscribe((data) => {
+            this.router.navigateByUrl('/profile');
+          });
     });
   }
 }
