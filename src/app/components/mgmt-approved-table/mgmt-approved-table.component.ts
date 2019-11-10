@@ -16,6 +16,7 @@ export class MgmtApprovedTableComponent implements OnInit {
   public userId: number = CurrentUser.ers_users_id;
 
   public selectedId: number;
+  public selectedSrc : string;
 
   approvedArray: TicketData[] = [];
   ticketSubscription: Subscription;
@@ -39,5 +40,9 @@ export class MgmtApprovedTableComponent implements OnInit {
       this.selectedId = ticketId;
     }
   }
-
+  
+  modalClick(selected) {
+    console.log("modalClick selected is this value : " +selected);
+    this.selectedSrc = selected;
+  }
 }

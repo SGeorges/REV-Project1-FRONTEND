@@ -16,6 +16,7 @@ export class MgmtPendingTableComponent implements OnInit {
   public userId: number = CurrentUser.ers_users_id;
 
   public selectedId: number;
+  public selectedSrc : string;
 
   pendingArray: TicketData[];
   ticketSubscription: Subscription;
@@ -48,5 +49,10 @@ export class MgmtPendingTableComponent implements OnInit {
   denied(ticketId: number) {
     console.log(ticketId);
     this.mgmtService.postDenied(ticketId);
+  }
+
+  modalClick(selected) {
+    console.log("modalClick selected is this value : " +selected);
+    this.selectedSrc = selected;
   }
 }

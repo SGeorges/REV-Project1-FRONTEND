@@ -1,0 +1,16 @@
+.cccp-scss{
+    height: 100%;
+    margin: 0;
+
+    position: fixed;
+    min-width: 100%;
+    background-image: url("./../../../assets/img/gosbank-background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    }
+
+.h1 {
+    color: #d50000;
+    @import url('https://fonts.googleapis.com/css?family=Monda&display=swap');
+}

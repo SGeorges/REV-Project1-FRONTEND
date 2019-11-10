@@ -1,69 +1,85 @@
 <div class="container p-4">
-        <h1 class="h4 text-center"> Approved Expenses </h1>
-        <div class="row">
-            <table mdbTable #tableEl="mdbTable" small="true" stickyHeader="true" hover="true" class="z-depth-1">
-                <thead class="sticky-top">
-                    <tr>
-                        <th *ngFor="let head of headElements; let i = index" scope="col" class="text-center">
-                            {{head | titlecase}}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody mdbTableCol *ngFor="let ticket of approvedArray" (click)='selectTicket(ticket.reimb_id)'>
-                    <tr>
-                        <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
-                        <td class="text-center"> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}} </td>
-                        <td class="text-center"> {{ticket.reimb_submitted | date:'longDate'}} </td>
-                        <td class="text-center"> {{ticket.reimb_type}} </td>
-                        <td class="text-center red-text"> {{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}} </td>
-                    </tr>
-                    <tr *ngIf="selectedId == ticket.reimb_id">
-                        <td colspan="100%">
-                            <mdb-card class="border border-light w-100">
-                                <!--Card content-->
-                                <mdb-card-body>
-                                    <!--Text-->
-                                    <mdb-card-text>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item pl-0">
-                                                        <strong><u>Author Id:</u></strong> {{ticket.reimb_author_id}}
-                                                    </li>
-                                                    <li class="list-group-item pl-0">
-                                                        <strong><u>Author Name:</u></strong> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}
-                                                    </li>
-                                                    <li class="list-group-item pl-0">
-                                                        <strong><u>Resolver Id:</u></strong> {{ticket.reimb_resolver_id}}
-                                                    </li>
-                                                    <li class="list-group-item pl-0">
-                                                        <strong><u>Resolver Name:</u></strong> {{ticket.reimb_resolver_first_name}} {{ticket.reimb_resolver_last_name}}
-                                                    </li>
-                                                    <li class="list-group-item pl-0">
-                                                        <strong><u>Resolved Date:</u></strong> {{ticket.reimb_resolved | date:'longDate'}}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6 text-center">
-                                                <img src="https://via.placeholder.com/250">
-                                            </div>
+    <h1 class="h4 text-center"> Approved Expenses </h1>
+    <div class="row">
+        <table mdbTable #tableEl="mdbTable" small="true" stickyHeader="true" hover="true" class="z-depth-1">
+            <thead class="sticky-top">
+                <tr>
+                    <th *ngFor="let head of headElements; let i = index" scope="col" class="text-center">
+                        {{head | titlecase}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody mdbTableCol *ngFor="let ticket of approvedArray">
+                <tr (click)='selectTicket(ticket.reimb_id)'>
+                    <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
+                    <td class="text-center"> {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}} </td>
+                    <td class="text-center"> {{ticket.reimb_submitted | date:'longDate'}} </td>
+                    <td class="text-center"> {{ticket.reimb_type}} </td>
+                    <td class="text-center red-text"> {{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}} </td>
+                </tr>
+                <tr *ngIf="selectedId == ticket.reimb_id">
+                    <td colspan="100%">
+                        <mdb-card class="border border-light w-100">
+                            <!--Card content-->
+                            <mdb-card-body>
+                                <!--Text-->
+                                <mdb-card-text>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item pl-0">
+                                                    <strong><u>Author Id:</u></strong> {{ticket.reimb_author_id}}
+                                                </li>
+                                                <li class="list-group-item pl-0">
+                                                    <strong><u>Author Name:</u></strong>
+                                                    {{ticket.reimb_author_first_name}} {{ticket.reimb_author_last_name}}
+                                                </li>
+                                                <li class="list-group-item pl-0">
+                                                    <strong><u>Resolver Id:</u></strong> {{ticket.reimb_resolver_id}}
+                                                </li>
+                                                <li class="list-group-item pl-0">
+                                                    <strong><u>Resolver Name:</u></strong>
+                                                    {{ticket.reimb_resolver_first_name}}
+                                                    {{ticket.reimb_resolver_last_name}}
+                                                </li>
+                                                <li class="list-group-item pl-0">
+                                                    <strong><u>Resolved Date:</u></strong>
+                                                    {{ticket.reimb_resolved | date:'longDate'}}
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div class="row mt-4 border-top border-color-dark">
-                                            <div class="col-md-12">
-                                                <strong><u>Description:</u></strong>
-                                                <br>
-                                                {{ticket.reimb_description}}
-                                            </div>
+                                        <div class="col-sm-6 text-center">
+                                            <button type="button" mdbBtn class="relative waves-light m-0 p-0"
+                                                (click)="modalClick(ticket.reimb_receipt)" (click)="basicModal.show()"
+                                                mdbWavesEffect data-toggle="modal" data-target="#basicExampleModal">
+                                                <img class="receipt-img" [src]="ticket.reimb_receipt">
+                                            </button> </div>
+                                    </div>
+                                    <div class="row mt-4 border-top border-color-dark">
+                                        <div class="col-md-12">
+                                            <strong><u>Description:</u></strong>
+                                            <br>
+                                            {{ticket.reimb_description}}
                                         </div>
-    
-                                    </mdb-card-text>
-    
-                                </mdb-card-body>
-                            </mdb-card>
-                        </td>
-    
-                    </tr>
-                </tbody>
-            </table>
+                                    </div>
+
+                                </mdb-card-text>
+
+                            </mdb-card-body>
+                        </mdb-card>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img [src]='selectedSrc'>
         </div>
     </div>
+</div>

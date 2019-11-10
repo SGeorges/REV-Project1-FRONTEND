@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ModalModule, WavesModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md'
+
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
 import { TicketData } from '../../models/ticketData';
@@ -11,10 +14,11 @@ import { CurrentUser } from '../../user';
 })
 export class TicketTableComponent implements OnInit {
 
-  public headElements = ['Id', 'Amount', 'Type', 'Date Submitted', 'Status'];
+  public headElements = ['Id', 'Type', 'Date Submitted', 'Amount', 'Status'];
   public userId = CurrentUser.ers_users_id;
 
   public selectedId : number;
+  public selectedSrc : string;
 
   ticketArray: TicketData[] = [];
   ticketSubscription: Subscription;
@@ -38,5 +42,10 @@ export class TicketTableComponent implements OnInit {
     } else {
       this.selectedId = ticketId;
     }
+  }
+
+  modalClick(selected) {
+    console.log("modalClick selected is this value : " +selected);
+    this.selectedSrc = selected;
   }
 }

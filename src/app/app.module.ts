@@ -40,7 +40,7 @@ import { MgmtDeniedTableComponent } from './components/mgmt-denied-table/mgmt-de
     FormComponent,
     MgmtPendingTableComponent,
     MgmtApprovedTableComponent,
-    MgmtDeniedTableComponent
+    MgmtDeniedTableComponent,
   ],
   imports: [
     BrowserModule,

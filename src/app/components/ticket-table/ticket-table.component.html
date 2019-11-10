@@ -9,12 +9,12 @@
                     </th>
                 </tr>
             </thead>
-            <tbody mdbTableCol *ngFor="let ticket of ticketArray" (click)='selectTicket(ticket.reimb_id)'>
-                <tr>
+            <tbody mdbTableCol *ngFor="let ticket of ticketArray" >
+                <tr (click)='selectTicket(ticket.reimb_id)'>
                     <th class="text-center" scope="row">{{ticket.reimb_id}}</th>
-                    <td class="text-center red-text">{{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}}</td>
                     <td class="text-center"> {{ticket.reimb_type}} </td>
                     <td class="text-center"> {{ticket.reimb_submitted | date:'short'}} </td>
+                    <td class="text-center red-text">{{ticket.reimb_amount | currency:'RUB':'symbol-narrow'}}</td>
                     <td class="text-center"> {{ticket.reimb_status}} </td>
                 </tr>
                 <tr *ngIf="selectedId == ticket.reimb_id">
@@ -45,7 +45,9 @@
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 text-center">
-                                            <img src="https://via.placeholder.com/250">
+                                            <button type="button" mdbBtn class="relative waves-light m-0 p-0" (click)="modalClick(ticket.reimb_receipt)" (click)="basicModal.show()" mdbWavesEffect>
+                                                    <img class="receipt-img" [src]="ticket.reimb_receipt" data-toggle="modal" data-target="#basicExampleModal">
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="row mt-4 border-top border-color-dark">
@@ -66,4 +68,13 @@
             </tbody>
         </table>
     </div>
+</div>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <img [src]= 'selectedSrc'>
+    </div>
+  </div>
 </div>
