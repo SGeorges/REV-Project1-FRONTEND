@@ -47,7 +47,7 @@ export class TicketFormComponent implements OnInit {
     if ((formValues.amount != null) && (formValues.type != "") ) {
       console.log(formValues);
 
-      //this.formService.postForm(formValues, this.fileToUpload);
+      this.formService.postForm(formValues, this.fileToUpload);
     } else {
 
     }

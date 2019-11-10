@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { TicketData } from '../models/ticketData';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,13 @@ export class FormService {
     const createUrl = 'http://localhost:8080/meadges/create/'
     
     this.httpClient.post(createUrl, form)
-      .subscribe(data => {
-        console.log(data);
+      .subscribe((data : TicketData) => {
+        const receiptCreateUrl = ('http://localhost:8080/meadges/Receipt/' + data.reimb_id);
+        
+        console.log(receiptCreateUrl);
+        console.log(fileToUpload)
+        this.httpClient.post(receiptCreateUrl, fileToUpload)
+          .subscribe((data) => console.log(data));
     });
   }
 }
